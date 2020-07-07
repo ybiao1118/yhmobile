@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yinhai.common.dao.ErrLogMapper">
+
+    <insert id="insert" parameterType="com.yinhai.common.entity.ErrLog">
+        <![CDATA[
+        insert into T_YHMOBILE_ERR_LOG (
+            id,
+            model,
+            action,
+            release,
+            url,
+            err_name,
+            msg,
+            ip,
+            req_param,
+            create_time,
+            source,
+            version
+        )
+        values (
+            seq_yhmobile_err_log.nextval,
+            #{model,jdbcType=VARCHAR},
+            #{action,jdbcType=VARCHAR},
+            #{release,jdbcType=VARCHAR},
+            #{url,jdbcType=VARCHAR},
+            #{excName,jdbcType=VARCHAR},
+            #{excMsg,jdbcType=VARCHAR},
+            #{ip,jdbcType=VARCHAR},
+            #{reqParam,javaType=java.lang.String,jdbcType=CLOB},
+            #{createTime,jdbcType=TIMESTAMP},
+            #{source,jdbcType=VARCHAR},
+            #{version,jdbcType=VARCHAR}
+        )
+        ]]>
+    </insert>
+
+</mapper>

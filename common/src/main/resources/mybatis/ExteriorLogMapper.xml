@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yinhai.common.dao.ExteriorLogMapper">
+
+    <insert id="insert" parameterType="com.yinhai.common.entity.ExteriorLog">
+        <![CDATA[
+        insert into T_YHMOBILE_API_LOG (
+            id,
+            action,
+            req_param,
+            resp_param,
+            create_time,
+            resultcode,
+            resultdesc,
+            responsecode,
+            responsetime,
+            release
+        )
+        values (
+            seq_yhmobile_api_log.nextval,
+            #{action,jdbcType=VARCHAR},
+            #{reqParam,javaType=java.lang.String,jdbcType=CLOB},
+            #{respParam,javaType=java.lang.String,jdbcType=CLOB},
+            #{createTime,jdbcType=TIMESTAMP},
+            #{resultCode,jdbcType=VARCHAR},
+            #{resultDesc,jdbcType=VARCHAR},
+            #{responseCode,jdbcType=VARCHAR},
+            #{responseTime,jdbcType=VARCHAR},
+            #{release,jdbcType=VARCHAR}
+
+        )
+        ]]>
+    </insert>
+
+</mapper>

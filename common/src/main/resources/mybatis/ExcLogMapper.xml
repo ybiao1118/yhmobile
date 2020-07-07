@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yinhai.common.dao.ExcLogMapper">
+
+    <insert id="insert" parameterType="com.yinhai.common.entity.ExcLog">
+        <![CDATA[
+        insert into t_exc_log (
+        ID,
+        REQ_PARAM,
+        NAME,
+        MSG,
+        MODEL,
+        ACTION,
+        RELEASE,
+        URL,
+        IP,
+        CREATETIME
+        )
+        values (
+        seq_t_exc_log.nextval,
+        #{reqParam,javaType=java.lang.String,jdbcType=CLOB},
+        #{excName,jdbcType=VARCHAR},
+        #{excMsg,jdbcType=VARCHAR},
+        #{model,jdbcType=VARCHAR},
+        #{action,jdbcType=VARCHAR},
+        #{release,jdbcType=VARCHAR},
+         #{url,jdbcType=VARCHAR},
+          #{ip,jdbcType=VARCHAR},
+          #{createTime,jdbcType=TIMESTAMP}
+        )
+        ]]>
+    </insert>
+
+</mapper>

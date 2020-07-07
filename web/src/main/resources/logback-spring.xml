@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+
+    <!-- 定义日志输出格式 -->
+    <property name="PATTERN"
+              value="%green(%d{yyyy-MM-dd HH:mm:ss.SSS}) %highlight(%5p) %magenta([%t]) %white(%-40.40logger{40}) %boldMagenta(%3.3L) %blue(:) %cyan(%m%n)"/>
+
+    <!-- 定义日志文件输出路径（一般在Linux云服务器上使用） -->
+    <property name="OUTPUT_PATH" value="/usr/local/yhmoile"/>
+
+    <!-- 开发环境日志配置 -->
+    <springProfile name="v5">
+        <!-- 日志输出到控制台 -->
+        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>${PATTERN}</pattern>
+                <charset>UTF-8</charset>
+            </encoder>
+        </appender>
+
+        <!-- 根日志级别为DEBUG -->
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+
+        <logger name="com.yinhai" level="DEBUG"></logger>
+        <logger name="java.sql.Connection" level="DEBUG"/>
+        <logger name="java.sql.Statement" level="DEBUG"/>
+        <logger name="java.sql.PreparedStatement" level="DEBUG"/>
+    </springProfile>
+    <springProfile name="v7">
+        <!-- 日志输出到控制台 -->
+        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>${PATTERN}</pattern>
+                <charset>UTF-8</charset>
+            </encoder>
+        </appender>
+
+        <!-- 根日志级别为DEBUG -->
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+
+        <logger name="com.yinhai" level="DEBUG"></logger>
+        <logger name="java.sql.Connection" level="DEBUG"/>
+        <logger name="java.sql.Statement" level="DEBUG"/>
+        <logger name="java.sql.PreparedStatement" level="DEBUG"/>
+    </springProfile>
+
+
+    <!--&lt;!&ndash; 测试环境日志配置 &ndash;&gt;-->
+    <!--<springProfile name="sit">-->
+        <!--&lt;!&ndash; 日志输出到控制台 &ndash;&gt;-->
+        <!--<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">-->
+            <!--<encoder>-->
+                <!--<pattern>${PATTERN}</pattern>-->
+                <!--<charset>UTF-8</charset>-->
+            <!--</encoder>-->
+        <!--</appender>-->
+
+        <!--&lt;!&ndash; 日志输出到文件 &ndash;&gt;-->
+        <!--<appender name="ROLLING_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+            <!--<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">-->
+                <!--<fileNamePattern>${OUTPUT_PATH}/sit/server/logs/%d{yyyy-MM-dd}.%i.log</fileNamePattern>-->
+                <!--<maxHistory>30</maxHistory>-->
+                <!--<maxFileSize>100MB</maxFileSize>-->
+            <!--</rollingPolicy>-->
+            <!--<encoder>-->
+                <!--<pattern>${PATTERN}</pattern>-->
+                <!--&lt;!&ndash;<charset>UTF-8</charset>&ndash;&gt;-->
+            <!--</encoder>-->
+        <!--</appender>-->
+
+        <!--&lt;!&ndash; 项目目录下的包输出日志级别为INFO &ndash;&gt;-->
+        <!--<logger name="com.deloitte" level="DEBUG">-->
+            <!--<appender-ref ref="CONSOLE"/>-->
+        <!--</logger>-->
+
+        <!--&lt;!&ndash; 根日志级别为INFO &ndash;&gt;-->
+        <!--<root level="INFO">-->
+            <!--<appender-ref ref="ROLLING_FILE"/>-->
+        <!--</root>-->
+    <!--</springProfile>-->
+
+
+</configuration>

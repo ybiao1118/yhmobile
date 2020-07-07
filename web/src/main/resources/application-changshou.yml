@@ -1,0 +1,87 @@
+server:
+  port: 8091
+  servlet:
+    context-path: /mobile
+logging:
+  config: classpath:logback-spring.xml
+
+spring:
+  profiles:
+    active: v7
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@192.168.18.231:1521:oasa
+    username: wechatweb
+    password: wechatweb
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      # 初始化时建立物理连接的个数。
+      initial-size: 5
+      # 最小连接池数量
+      min-idle: 5
+      # 最大连接池数量
+      max-active: 20
+      # 获取连接时最大等待时间，单位毫秒。
+      max-wait: 6000
+      # Destroy 线程会检测连接的间隔时间，如果连接空闲时间大于等于 minEvictableIdleTimeMillis 则关闭物理连接。
+      time-between-eviction-runs-millis: 60000
+      # 连接保持空闲而不被驱逐的最小时间
+      min-evictable-idle-time-millis: 300000
+      # 用来检测连接是否有效的 sql
+      validation-query: SELECT 1 FROM DUAL
+      # 建议配置为 true，不影响性能，并且保证安全性。
+      test-while-idle: true
+      # 是否自动回收超时连接
+      remove-abandoned: true
+      # 超时时间 (以秒数为单位)
+      remove-abandoned-timeout: 180
+  aop:
+    auto: true
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    timeout: 10000
+    database: 3
+    jedis:
+      pool:
+        min-idle: 0
+        max-idle: 8
+        max-wait: -1
+        max-active: 8
+  rabbitmq:
+    host: 127.0.0.1
+    password: guest
+    username: guest
+    port: 5672
+    publisher-returns: true
+    publisher-confirms: true
+    listener:
+      direct:
+        acknowledge-mode: manual
+      simple:
+        acknowledge-mode: manual
+
+mybatis:
+  # 映射文件的路径 ，支持 Ant 风格的通配符， 多个配置可以使用英文逗号隔开
+  mapperLocations: classpath*:mybatis/*.xml
+  # REUSE是可重用执行器，重用对象是Statement（即该执行器会缓存同一个sql的Statement，省去Statement的重新创建，优化性能）（即会重用预处理语句）
+  executor-type: reuse
+  # model的包
+  type-aliases-package: com.yinhai.*.entity
+  configuration:
+    # 开启驼峰命名规则自动转换
+    map-underscore-to-camel-case: true
+common:
+  #程序版本号
+  version: 1.0.1
+  #请求来源，可配多来源，以逗号间隔； wxmp-微信公众号,wxmini-微信小程序,hiip-医院信息平台接口,payment-移动管理后台
+  source: wxmp,wxmini,hiip,payment
+  #项目是否加密 true：加密 false：不加密
+  isEncrypt: false
+  #是否启用白名单
+  useWhiteIP: false
+  #前端项目请求白名单ip
+  whiteIP: 192.168.104.179,192.168.26.197
+  #启动版本
+  releaseV5: v5
+  releaseV7: v7

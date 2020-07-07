@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yinhai.common.dao.OperationalLogMapper">
+
+    <insert id="insert" parameterType="com.yinhai.common.entity.OperationalLog">
+        <![CDATA[
+        insert into T_YHMOBILE_OPERATIONAL_LOG (
+            id,
+            model,
+            action,
+            release,
+            req_param,
+            resp_param,
+            source,
+            description,
+            url,
+            ip,
+            method,
+            statuscode,
+            createtime
+        )
+        values (
+            seq_yhmobile_operational_log.nextval,
+            #{model,jdbcType=VARCHAR},
+            #{action,jdbcType=VARCHAR},
+            #{release,jdbcType=VARCHAR},
+            #{reqParam,javaType=java.lang.String,jdbcType=CLOB},
+            #{respParam,javaType=java.lang.String,jdbcType=CLOB},
+            #{source,jdbcType=VARCHAR},
+            #{desc,jdbcType=VARCHAR},
+            #{url,jdbcType=VARCHAR},
+            #{ip,jdbcType=VARCHAR},
+            #{method,jdbcType=VARCHAR},
+            #{statusCode,jdbcType=VARCHAR},
+            #{createTime,jdbcType=TIMESTAMP}
+        )
+        ]]>
+    </insert>
+
+</mapper>
